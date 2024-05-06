@@ -1,0 +1,39 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="card">
+            <div class="card-body">
+              <h5 class="card-title" style="color:red">Invoice List</h5>
+                <!-- Dark Table -->
+              <table class="table table-dark">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Registration id</th>
+                    <th>Name</th>
+                    <th>Registration Date</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.registernumber}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.creationdate}}</td>
+                      <td>
+                        <a href="{% url 'invoice_detail' i.id %}">
+                            <button type="button" class="btn btn-primary">Generate Receipt</button>
+                        </a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+</div>
+{% endblock %}

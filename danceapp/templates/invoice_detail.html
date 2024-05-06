@@ -1,0 +1,130 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
+
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                         <div class="card-body">
+                  <h4>
+                  <th style="color:blue">Invoice Detail:</th>
+                  </h4>
+                <table id="example1" class="table table-bordered table-striped">
+                  <tr>
+                   <h3 style="color:blue"><center <th>Invoice #</th><center<td>{{data.registernumber}}</td></h3>
+                  </tr>
+                  <tr>
+                   <h3 style="color:blue"><th>Customer Details:</th></h3>
+                  </tr>
+                  <tr>
+                   <th>Name</th>
+                    <td>{{data.name}}</td>
+                    <th>Mobile Number</th>
+                    <td>{{data.mobile}}</td>
+                    <th>Email</th>
+                    <td>{{data.email}}</td>
+                  </tr>
+                </table><br>
+                <table id="example1" class="table table-bordered table-striped">
+                  <tr>
+                   <h3 style="color:blue"><th>Fee Details:</th></h3>
+                  </tr>
+                  <tr>
+                   <th>#</th>
+                    <th>Class Name</th>
+                    <th>Cost</th>
+                  </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{{data.classname.classname}}</td>
+                        <td>{{data.classname.cost}} Rs.</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                       <th>Grand Total</th>
+                        <td>{{data.classname.cost}} Rs.</td>
+                    </tr>
+                </table>
+                 <br><table id="example1" class="table table-bordered table-striped">
+                  <tr>
+                   <h3 style="color:blue"><th>Payment History:</th></h3>
+                  </tr>
+                   <tr>
+                   <th>#</th>
+                    <th>Payment mode</th>
+                    <th>Amount Pay</th>
+                  </tr>
+                  {% for i in invoice %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.paymentmode}}</td>
+                        <td id="price-{{forloop.counter}}">{{i.payment}}</td>
+                    </tr>
+                  {% endfor %}
+                     <tr style="color:red">
+                         <td></td>
+                         <td>Total Due</td>
+                         <td id="totaldue">{{data.res}} Rs.</td>
+                     </tr>
+                 </table>
+              </div>
+
+
+                        <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <tr>
+                                <td>Payment mode</td>
+                                <td><div class="form-group">
+                                  <select class="form-control" name="paymentmode" required>
+                                        <option value="Debit Card">Debit Card</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="Demand Draft">Demand Draft</option>
+                                    </select>
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td>Payment</td>
+                                    <td>
+                                        <input type="number" class="form-control" name="payment" required>
+                                    </td>
+                            </tr>
+                                <td><td>
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                </td></td>
+                                </form>
+                        </table>
+                            <h1 style="color:green">
+                                <h4 align="center"><button onclick="window.print()"><i class="fa fa-file"></i></button></h4>
+                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+        </div>             <!-- /.card-body -->
+    </section>
+                        </div>
+
+<script>
+    totalloop = parseInt('{{invoice.count}}');
+    totalamount = parseInt('{{data.classname.cost}}')
+    totaldue= 0
+    for(var i=1;i<=totalloop;i++){
+        totaldue += parseInt(document.getElementById('price-'+i).innerHTML);
+    }
+    document.getElementById('totaldue').innerHTML = totalamount - totaldue;
+</script>
+
+{% endblock %}

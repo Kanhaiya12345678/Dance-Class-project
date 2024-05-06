@@ -1,0 +1,54 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+
+    <!--  ************************* Page Title Starts Here ************************** -->
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Contact Us</h4>
+   <form action="" method="post">
+        {% csrf_token %}
+      <div class="row contact-rooo no-margin">
+        <div class="container">
+           <div class="row">
+
+            <div style="padding:20px" class="col-sm-12">
+                <div class="row">
+                    <div style="padding-top:10px;color:black" class="col-sm-3"><label>Page Title</label></div>
+                    <div class="col-sm-12"><input type="text" name="pagetitle" value="{{data.pagetitle}}" class="form-control input-sm" ></div>
+                </div>
+                <div class="row">
+                    <div style="padding-top:10px;color:black" class="col-sm-3"><label>Email</label></div>
+                    <div class="col-sm-12"><input type="email" name="email" value="{{data.email}}" class="form-control input-sm" ></div>
+                </div>
+                <div class="row">
+                    <div style="padding-top:10px;color:black" class="col-sm-3"><label>Mobile Number</label></div>
+                    <div class="col-sm-12"><input type="number" name="mobile" value="{{data.mobile}}" class="form-control input-sm" ></div>
+                </div>
+                <div class="row">
+                    <div style="padding-top:10px;color:black" class="col-sm-3"><label>Timing</label></div>
+                    <div class="col-sm-12"><input type="text" name="timing" value="{{data.timing}}" class="form-control input-sm" ></div>
+                </div>
+                 <div style="margin-top:10px;" class="row">
+                    <div style="padding-top:10px;color:black" class="col-sm-12"><label>Page Description:</label></div>
+                    <div class="col-sm-12">
+                      <textarea rows="5" class="form-control select2bs4 editor" name="description" style="width: 100%;">{{data.description}}</textarea>
+                    </div>
+                </div><br>
+                 <div class="col-sm-8">
+                     <button class="btn btn-success btn-sm">Update and Post</button>
+                    </div>
+                </div>
+            </div>
+
+         </div>
+
+            </div>
+   </form>
+        </div>
+
+      </div>
+
+               </div>
+{% endblock %}

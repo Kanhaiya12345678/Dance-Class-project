@@ -1,0 +1,113 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+
+              <div class="row">
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-tale">
+                    <a class="nav-link" href="/view_class/">
+                    <div class="card-body">
+                      <div class="row">
+                      <div class="col md-4">
+                      <h4 style="color:black" align="center">Total</h4><br>
+                      <p style="color:black" class="fs-30 mb-2" align="center">Classes</p>
+                      </div>
+                        <div class="col md-4">
+                      <h1 style="color:black" align="right">{{classname.count}}</h1>
+                      </div>
+                      </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-tale">
+                    <a class="nav-link" href="/view_teacher/">
+                    <div class="card-body">
+                      <div class="row">
+                      <div class="col md-4">
+                      <h4 style="color:black" align="center">Total</h4><br>
+                      <p style="color:black" class="fs-30 mb-2" align="center">Teachers</p>
+                      </div>
+                        <div class="col md-4">
+                      <h1 style="color:black" align="right">{{teacher.count}}</h1>
+                      </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                    <a class="nav-link" href="/registrationlist/?action=Total">
+                    <div class="card-body">
+                      <div class="row">
+                      <div class="col md-4">
+                      <h4 style="color:black" align="center">Total</h4><br>
+                      <p style="color:black" class="fs-30 mb-2" align="center">Registration</p>
+                      </div>
+                        <div class="col md-4">
+                      <h1 style="color:black" align="right">{{total.count}}</h1>
+                      </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-blue">
+                    <a class="nav-link" href="/registrationlist/?action=Selected">
+                    <div class="card-body">
+                      <div class="row">
+                      <div class="col md-4">
+                      <h4 style="color:black" align="center">Total</h4><br>
+                      <p style="color:black" class="fs-30 mb-2" align="center">Selected&nbsp;Reg</p>
+                      </div>
+                        <div class="col md-4">
+                      <h1 style="color:black" align="right">{{selected.count}}</h1>
+                      </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-blue">
+                    <a class="nav-link" href="/registrationlist/?action=Rejected">
+                    <div class="card-body">
+                      <div class="row">
+                      <div class="col md-4">
+                      <h4 style="color:black" align="center">Total</h4><br>
+                      <p style="color:black" class="fs-30 mb-2" align="center">Rejected&nbsp;Reg</p>
+                      </div>
+                        <div class="col md-4">
+                      <h1 style="color:black" align="right">{{rejected.count}}</h1>
+                      </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 stretch-card transparent">
+                  <div class="card card-light-danger">
+                    <a class="nav-link" href="/registrationlist/?action=New">
+                    <div class="card-body">
+                      <div class="row">
+                      <div class="col md-4">
+                      <h4 style="color:black" align="center">Total</h4><br>
+                      <p style="color:black" class="fs-30 mb-2" align="center">New&nbsp;Reg</p>
+                      </div>
+                        <div class="col md-4">
+                      <h1 style="color:black" align="right">{{new.count}}</h1>
+                      </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+{% endblock %}

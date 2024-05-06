@@ -1,0 +1,60 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+<div class="card">
+            <div class="card-body">
+<div class="container">
+
+    <h4 class="my-4">Search by Invoice Number Registration Number</h4><hr>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <input type="text" style="width:100%;" class="form-control" id="exampleInputText1" placeholder="Search Registration Number" value="{{fromdate}}" name="fromdate">
+    </div>
+    </br>
+        <button type="submit" class="btn btn-primary">Search</button>
+</form>
+</div>
+<br>{% if data %}
+<div class="container">
+<h3 align="center"> Number related to search for '{{fromdate}}'</h3>
+    <table class="table table-dark" style="width:100%">
+
+                <thead>
+                 <tr>
+                    <th>#</th>
+                    <th>Registration id</th>
+                    <th>Name</th>
+                    <th>Registration Date</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.registernumber}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.creationdate}}</td>
+                      <td>
+                        <a href="{% url 'invoice_detail' i.id %}">
+                            <button type="button" class="btn btn-primary">Generate Receipt</button>
+                        </a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+
+              <!-- /.card-body -->
+</div>
+
+ {% elif data2 %}
+
+<h4 align="center">Data not found</h4>
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

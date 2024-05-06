@@ -1,0 +1,87 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">{% if pid %}Update{% else %}Add{% endif %} Teacher</h4>
+{% if pid %}
+                  <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label>Class</label>
+                      <select class="form-control select2bs4" name="classname" style="width: 100%;" value="{{classname.classname}}">
+                          <option value="">Select Class</option>
+                          {% for i in myclass %}
+                          <option value="{{i.id}}" {% if i.id == teacher.classname.id %}selected{% endif %}>{{i.classname}}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Teacher Name</label>
+                        <input class="form-control select2bs4" name="teachername" style="width: 100%;" value="{{teacher.teachername}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Mobile Number</label>
+                      <input type="number" class="form-control" name="mobile" value="{{teacher.mobile}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" name="email" value="{{teacher.email}}">
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                      <label class="form-label">Profile Photo</label>
+                      <input type="file" class="form-control" id="exampleInputPassword" name="teacherimage">
+                    </div>
+                    <div class="col-md-6">
+                      <img src="{{teacher.teacherimage.url}}" height="100" width="100">
+                    </div>
+                    </div>
+                    <div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-danger" type="reset">Cancel</button>
+                    </div>
+                  </form>
+{% else %}
+            <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                            <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label>Class</label>
+                      <select class="form-control select2bs4" name="classname" style="width: 100%;" value="{{classname.classname}}">
+                          <option value="">Select Class</option>
+                          {% for i in myclass %}
+                          <option value="{{i.id}}" {% if i.id == teacher.classname.id %}selected{% endif %}>{{i.classname}}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Teacher Name</label>
+                        <input class="form-control select2bs4" name="teachername" style="width: 100%;" value="{{teacher.teachername}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Mobile Number</label>
+                      <input type="number" class="form-control" name="mobile" value="{{teacher.mobile}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" name="email" value="{{teacher.email}}">
+                    </div>
+                     <div class="form-group">
+                      <label class="form-label">Profile Photo</label>
+                      <input type="file" class="form-control" name="teacherimage">
+                    </div>
+                    <div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-danger" type="reset">Cancel</button>
+                    </div>
+            </form>
+{% endif %}
+                </div>
+              </div>
+            </div>
+
+{% endblock %}

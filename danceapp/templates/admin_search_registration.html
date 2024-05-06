@@ -1,0 +1,69 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+<div class="card">
+            <div class="card-body">
+<div class="container">
+
+    <h4 class="my-4">Search by Registration Number</h4><hr>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <input type="text" style="width:100%;" class="form-control" id="exampleInputText1" placeholder="Search By Registration Number" value="{{fromdate}}" name="fromdate">
+    </div>
+    </br>
+        <button type="submit" class="btn btn-primary">Search</button>
+</form>
+</div>
+<br>{% if data %}
+<div class="container">
+<h4> all Registration related to search for '{{fromdate}}'</h4>
+    <table class="table table-dark" style="width:100%">
+
+                <thead>
+                 <tr>
+                    <th #="col">#</th>
+                    <th Registration Number="col">Registration Number</th>
+                    <th Name="col">Name</th>
+                    <th Mobile Number="col">Mobile Number</th>
+                    <th Email="col">Email</th>
+                    <th Registration Date="col">Registration Date</th>
+                    <th Status="col">Status</th>
+                    <th Action="col">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.registernumber}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.mobile}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.creationdate}}</td>
+                    <td>{{i.status}}</td>
+                      <td>
+                        <a href="{% url 'registration_detail' i.id %}">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
+                        </a>
+                        <a href="{% url 'delete_registration' i.id %}">
+                            <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                        </a>
+                      </td>
+                  </tr>
+{% endfor %}
+                  </tbody>
+
+                </table>
+
+              <!-- /.card-body -->
+</div>
+
+ {% elif data2 %}
+
+<h4 align="center">Data not found</h4>
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

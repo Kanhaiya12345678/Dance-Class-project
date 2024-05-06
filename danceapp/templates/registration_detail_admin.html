@@ -1,0 +1,150 @@
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
+
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                <div class="card-body">
+                  <h4>
+                  <th style="color:blue">Registration Detail:</th>
+                  </h4>
+                <table id="example1" class="table table-bordered table-striped">
+                  <tr>
+                   <h3 style="color:blue"><center <th>Registration Number: </th><center<td>{{data.registernumber}}</td></h3>
+                  </tr>
+                  <tr>
+                   <th>Name</th>
+                    <td>{{data.name}}</td>
+                    <th>Email</th>
+                    <td>{{data.email}}</td>
+                  </tr>
+                  <tr>
+                    <th>Mobile Number</th>
+                    <td>{{data.mobile}}</td>
+                    <th>Gender</th>
+                    <td>{{data.gender}}</td>
+                  </tr>
+                  <tr>
+                    <th>Class Name</th>
+                    <td>{{data.classname}}</td>
+                    <th>Message</th>
+                    <td>{{data.message}}</td>
+                  </tr>
+                  <tr>
+                    <th>Status</th>
+                    <td>{{data.status}}</td>
+                    <th>Registration Date</th>
+                    <td>{{data.creationdate}}</td>
+                  </tr>
+                </table>
+                 <br>
+                      <h3 style="color:blue"><center> View Teacher Of Respective Class </center></center></h3>
+
+                             <table id="example1" class="table table-bordered table-striped">
+                             <tr>
+                   <th >Class Name</th>
+                    <td colspan="3">{{data.classname.classname}}</td>
+                      </tr>
+                             <tr>
+                    <th>Class Description</th>
+                    <td colspan="3">{{data.classname.description}}</td>
+                  </tr>
+                  <tr>
+                    <th>Fee:</th>
+                    <td>{{data.classname.cost}} Rs.</td>
+                    <th>Dance Image</th>
+                    <td><img src="{{data.classname.image.url}}" alt="" style="height:140px;width:200px"></td>
+                  </tr>
+                 </table>
+              </div>
+
+
+                            {% if data.status == "New" %}
+
+                            <center>
+                                <button type="button" class="btn btn-primary mt-5" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                    Take Action
+                                </button>
+                            </center>
+                            {% endif %}
+                         <table id="example6" class="table table-bordered table-striped">
+
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">                                  {% for i in traking %}
+                                    <tr>
+                                        <th style="color:blue">Admin Remark:</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Final Status</th>
+                                        <td>{{i.remark}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Remark</th>
+                                        <td>{{i.status}}</td>
+                                     </tr>
+                                    <tr>
+                                        <th>Time</th>
+                                        <td>{{i.time}}</td>
+                                    </tr>
+                                   {% endfor %}
+
+                                </table>
+
+                            </div>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Take Action</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <label>Remark:</label>
+                                                <textarea class="form-control" name="remark" placeholder="Remark"></textarea>
+                                                <label>Choose Status</label>
+                                                <select class="form-control" name="status">
+                                                    <option>Choose you status</option>
+                                                    <option value="Selected">Selected</option>
+                                                    <option value="Rejected">Rejected</option>
+                                                </select>
+
+                                                <div class="modal-footer">
+                                                    <button type="Close" class="btn btn-secondary" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- /.card-body -->
+                         </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+        </div>
+
+{% endblock %}
